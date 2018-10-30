@@ -24,3 +24,4 @@ libcluster_consul-*.tar
 
 Dockerfile
 consul
+.elixir_ls/
