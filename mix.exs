@@ -4,7 +4,7 @@ defmodule ClusterConsul.MixProject do
   def project do
     [
       app: :libcluster_consul,
-      version: "0.1.0",
+      version: "0.1.1",
       elixir: "~> 1.6",
       start_permanent: Mix.env() == :prod,
       deps: deps()
@@ -14,14 +14,15 @@ defmodule ClusterConsul.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger]
+      extra_applications: [:logger, :poison]
     ]
   end
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:libcluster, "~> 3.0"}
+      {:libcluster, "~> 3.0"},
+      {:poison, "~> 4.0.0"}
     ]
   end
 end
