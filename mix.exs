@@ -14,7 +14,7 @@ defmodule ClusterConsul.MixProject do
   # Run "mix help compile.app" to learn about applications.
   def application do
     [
-      extra_applications: [:logger, :poison]
+      extra_applications: [:logger, :jason]
     ]
   end
 
@@ -22,7 +22,7 @@ defmodule ClusterConsul.MixProject do
   defp deps do
     [
       {:libcluster, "~> 3.0"},
-      {:poison, "~> 4.0.0"}
+      {:jason, "~> 1.1.2"}
     ]
   end
 end

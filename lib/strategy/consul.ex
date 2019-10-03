@@ -120,7 +120,7 @@ defmodule ClusterConsul.Strategy do
     url = agent_url(root, "/agent/service/register")
     headers = []
     content_type = ''
-    body = Poison.encode!(register_payload(name, port))
+    body = Jason.encode!(register_payload(name, port))
     request = {to_charlist(url), headers, content_type, body}
     :httpc.request(:put, request, [], [])
   end
@@ -138,7 +138,7 @@ defmodule ClusterConsul.Strategy do
     url = agent_url(root, "/agent/check/update/#{check_name}")
     headers = []
     content_type = ''
-    body = Poison.encode!(%{Status: status, Output: output})
+    body = Jason.encode!(%{Status: status, Output: output})
     request = {to_charlist(url), headers, content_type, body}
     :httpc.request(:put, request, [], [])
   end
@@ -150,7 +150,7 @@ defmodule ClusterConsul.Strategy do
 
     case response do
       {:ok, {{_version, 200, _status}, _headers, body}} ->
-        {:ok, Poison.decode!(body)}
+        {:ok, Jason.decode!(body)}
 
       {:ok, {{_version, code, status}, _headers, body}} ->
         {:error, "cannot query consul agent (#{code} #{status}): #{inspect(body)}"}
